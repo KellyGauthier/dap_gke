@@ -19,13 +19,12 @@ import fr.houseofcode.dap.server.rma.google.CalendarService;
  */
 @RestController
 public class EventController {
-    @Autowired
-    private CalendarService event;
-    
-    @RequestMapping("/nextevent")
-    public String displayNextEvent(@RequestParam final String userKey) throws IOException, GeneralSecurityException {
-        return event.getNextEvent(userKey);
-    }
-    
+	@Autowired
+	private CalendarService event;
+
+	@RequestMapping("/nextevent")
+	public String displayNextEvent(@RequestParam final String userKey) throws IOException, GeneralSecurityException {
+		return event.getNextEvent(userKey);
+	}
 
 }
