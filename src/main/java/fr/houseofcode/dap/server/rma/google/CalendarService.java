@@ -20,8 +20,6 @@ import com.google.api.services.calendar.model.Events;
 @Service
 public final class CalendarService {
 
-   
-
     /**the internal APPLICATION_NAME.*/
     private static final String APPLICATION_NAME = "Google Calendar API Java Quickstart";
 
@@ -30,7 +28,6 @@ public final class CalendarService {
     }
 
     // ========================METHODE D'ACCES A CALENDAR=========================
- 
 
     /**
      * constant APPLICATION_NAME.
@@ -48,7 +45,8 @@ public final class CalendarService {
     private static Calendar getCalendarService(String userKey) throws GeneralSecurityException, IOException {
         final NetHttpTransport hTTPTRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         Calendar service = new Calendar.Builder(hTTPTRANSPORT, Utils.getJsonFactory(),
-                Utils.getCredentials(hTTPTRANSPORT, userKey)).setApplicationName(CalendarService.getApplicationName()).build();
+                Utils.getCredentials(hTTPTRANSPORT, userKey)).setApplicationName(CalendarService.getApplicationName())
+                        .build();
         return service;
 
     }
@@ -58,7 +56,7 @@ public final class CalendarService {
      * @throws IOException exception
      * @throws GeneralSecurityException exception
      */
-  
+
     public String getNextEvent(String ukValue) throws IOException, GeneralSecurityException {
         // Build a new authorized API client service.
 
@@ -70,11 +68,16 @@ public final class CalendarService {
         if (!items.isEmpty()) {
             for (Event event : items) {
                 DateTime start = event.getStart().getDateTime();
+                DateTime end = event.getEnd().getDateTime();
 
                 if (start == null) {
                     start = event.getStart().getDate();
                 }
-                str = "Evenement à venir =" + " " + event.getSummary() + " pour le : " + start;
+                if (end == null) {
+                    end = event.getEnd().getDate();
+                }
+                str = "Evenement à venir =" + " " + event.getSummary() + " pour le : " + start + ", se terminant le : "
+                        + end;
             }
 
         }
