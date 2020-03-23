@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
@@ -19,6 +21,8 @@ import com.google.api.services.calendar.model.Events;
 
 @Service
 public final class CalendarService {
+
+    private static final Logger LOG = LogManager.getLogger();
 
     /**the internal APPLICATION_NAME.*/
     private static final String APPLICATION_NAME = "Google Calendar API Java Quickstart";
@@ -60,6 +64,11 @@ public final class CalendarService {
     public String getNextEvent(String ukValue) throws IOException, GeneralSecurityException {
         // Build a new authorized API client service.
 
+        LOG.debug(
+                "recuperation du prochain avec déclenchement possible d'exceptions (IOException ou GeneralSecurityException)");
+
+        LOG.info("récupération du prochain évènement pour l'utilisateur :" + ukValue);
+
         String str = "No upcoming events found.";
         DateTime now = new DateTime(System.currentTimeMillis());
         Events events = getCalendarService(ukValue).events().list("primary").setMaxResults(1).setTimeMin(now)
@@ -82,6 +91,7 @@ public final class CalendarService {
 
         }
 
+        LOG.info("Prochain évènement : " + str);
         return str;
     }
 

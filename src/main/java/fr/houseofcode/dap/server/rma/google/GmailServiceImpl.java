@@ -19,8 +19,7 @@ import com.google.api.services.gmail.model.Message;
 
 /**
  * class GmailService.
- * @author rma
- * 5 juil. 2019
+ * @author lavio
  */
 
 @Service
@@ -68,7 +67,8 @@ public final class GmailServiceImpl implements GmailService {
     @Override
     public String getLabels(String ukValue) throws IOException, GeneralSecurityException {
         LOG.debug(
-                "recuperation des labels avec déclenchement possible d'exceptions (IOException ou GeneralSecurityException");
+                "recuperation des labels avec déclenchement possible d'exceptions (IOException ou GeneralSecurityException)");
+
         String str = "";
         ListLabelsResponse listResponse = getGmailService(ukValue).users().labels().list("me").execute();
         List<Label> labels = listResponse.getLabels();
@@ -99,6 +99,9 @@ public final class GmailServiceImpl implements GmailService {
 
     @Override
     public int getNbUnreadEmail(String ukValue) throws IOException, GeneralSecurityException {
+        LOG.debug(
+                "recuperation des labels avec déclenchement possible d'exceptions (IOException ou GeneralSecurityException)");
+
         LOG.info("Récupération du nombre d'email pour l'utilisateur : " + ukValue);
 
         ListMessagesResponse response = getGmailService(ukValue).users().messages().list("me")
