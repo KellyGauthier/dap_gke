@@ -15,6 +15,8 @@ import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.Events;
 
+//TODO GKE by Djer |Audit Code| Prends en comtpe les remarques de CheckStyle ! 
+
 /**
  * final class of CalendarService.
  */
@@ -27,12 +29,14 @@ public final class CalendarService {
     /**the internal APPLICATION_NAME.*/
     private static final String APPLICATION_NAME = "Google Calendar API Java Quickstart";
 
+    //TODO GKE by Djer |POO| Tu n'as plus besoin de Singleton, @Service de Spring le fait pour toi. Tu peux supprimer ce constructeur, celui par defaut sera automatiquement créé pour toi par le compilateur.
     /** private constructor who respect Singleton Pattern. */
     private CalendarService() {
     }
 
     // ========================METHODE D'ACCES A CALENDAR=========================
 
+    //TODO GKE by Djer |JavaDoc| Il n'est pas utile de repéter le nom de la constante. "name of the application when query a Google Service" serait mieu.
     /**
      * constant APPLICATION_NAME.
      * @return constant APPLICATION_NAME
@@ -41,6 +45,7 @@ public final class CalendarService {
         return APPLICATION_NAME;
     }
 
+    //TODO GKE by Djer |JavaDoc| Description fause, ne renvoie pas une liste, mais un "CalendarService" qui permet d'intéroger les données d'un calendrier Google d'un utilisateur.
     /**
      * @return a list of service.
      * @throws GeneralSecurityException exception
@@ -60,10 +65,10 @@ public final class CalendarService {
      * @throws IOException exception
      * @throws GeneralSecurityException exception
      */
-
     public String getNextEvent(String ukValue) throws IOException, GeneralSecurityException {
         // Build a new authorized API client service.
 
+        //TODO GKE by Djer |IDE| (encdage) Attention l'encodage de tes ficheirs Java etait (est?) en ISO8859-2 au lieu d'UTF-8 (dans Eclipse Help->Perform setup Task...)
         LOG.debug(
                 "recuperation du prochain avec dÃ©clenchement possible d'exceptions (IOException ou GeneralSecurityException)");
 
@@ -85,6 +90,7 @@ public final class CalendarService {
                 if (end == null) {
                     end = event.getEnd().getDate();
                 }
+                //TODO GKE by Djer |Rest API| Dans une API (serveur) Evite de formater les messages, renvoie plutot une Liste (de String). Laisse le client (ou Thymeleaf) effectuer la présentation.
                 str = "Evenement Ã  venir =" + " " + event.getSummary() + " pour le : " + start + ", se terminant le : "
                         + end;
             }

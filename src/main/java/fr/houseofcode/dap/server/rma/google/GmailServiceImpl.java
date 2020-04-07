@@ -17,6 +17,8 @@ import com.google.api.services.gmail.model.ListLabelsResponse;
 import com.google.api.services.gmail.model.ListMessagesResponse;
 import com.google.api.services.gmail.model.Message;
 
+//TODO GKE by Djer |Audit Code| Prends en comtpe les remarques de CheckStyle ! 
+
 /**
  * class GmailService.
  * @author lavio
@@ -30,11 +32,11 @@ public final class GmailServiceImpl implements GmailService {
     /**
      * @return the internal APPLICATION_NAME.
      */
-
     private static final String APPLICATION_NAME = "Gmail API Java Quickstart";
 
     // ========================METHODE D'ACCES A GMAIL=========================
 
+    //TODO GKE by Djer |POO| On accede en générale au constantes privé directement sans getter/setter. Cette constante n'est pas utilisé dans une autre classe il n'est donc pas utile de l'exposer avec ce getter.
     /**
      * @return access to constant APPLICATION_NAME.
      */
@@ -58,7 +60,7 @@ public final class GmailServiceImpl implements GmailService {
 
     // ========================METHODE LABEL=========================
     /**
-     *  @param userId type String
+     * @param userId type String
      * @return String containing list of labels
      * @throws IOException exception
      * @throws GeneralSecurityException exception
@@ -66,6 +68,7 @@ public final class GmailServiceImpl implements GmailService {
 
     @Override
     public String getLabels(String ukValue) throws IOException, GeneralSecurityException {
+        //TODO GKE by Djer |IDE| (encdage) Attention l'encodage de tes ficheirs Java etait (est?) en ISO8859-2 au lieu d'UTF-8 (dans Eclipse Help->Perform setup Task...)
         LOG.debug(
                 "recuperation des labels avec dÃ©clenchement possible d'exceptions (IOException ou GeneralSecurityException)");
 
@@ -79,11 +82,12 @@ public final class GmailServiceImpl implements GmailService {
         } else {
 
             for (Label label : labels) {
+                //TODO GKE by Djer |Rest API| Dans une API (serveur) Evite de formater les messages, renvoie plutot une Liste (de String). Laisse le client (ou Thymeleaf) effectuer la présentation.
                 str += label.getName() + "\n";
 
             }
         }
-
+        //TODO GKE by Djer |log4J| Contextualise tes messages ("... for user : " + ukValue). 
         LOG.info("nombre de labels gmail : " + labels.size());
         return str;
     }
@@ -119,11 +123,13 @@ public final class GmailServiceImpl implements GmailService {
                         .setPageToken(pageToken).execute();
 
             } else {
+                //TODO GKE by Djer |POO| Pas très utile, tu "break le while" s'il n'y a plus de "page suivante", hors "avoir une page suivante" est justement la condition pour entrer dans le while...
                 break;
             }
         }
 
         int number = messages.size();
+        //TODO GKE by Djer |log4J| Contextualise tes messages ("... for user : " + ukValue).
         LOG.info("Nombre d'email non lus : " + number);
         return number;
 

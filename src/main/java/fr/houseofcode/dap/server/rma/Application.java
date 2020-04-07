@@ -8,6 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
+//TODO GKE by Djer |Audit Code| Prends en comtpe les remarques de CheckStyle !
+//TODO GKE by Djer |Audit Code| PMD etait désactivé sur ton projet ! (je te l'ai activé)
+
 /**
  * @author rma
  * 9 juil. 2019
@@ -20,6 +23,7 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+    //TODO GKE by Djer |Spring| Cette méthode sert à afficher le contenu du contenur IOC de Spring, elle n'est plus utile. Elle servait à vérifier que Spring est bien configuré.
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
