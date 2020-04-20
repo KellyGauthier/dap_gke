@@ -171,7 +171,7 @@ public class GoogleAccount {
                 authorizationUrl.setRedirectUri(buildRedirectUri(request, "/oAuth2Callback"));
                 // store userId in session for CallBack Access
                 session.setAttribute("userId", userKey);
-                //TODO bam by Djer |API Google| Sauvegarde le "loginName" ici en session pour l'utiliser dans le oAuth2Callback
+                //TODO GKE by Djer |API Google| Sauvegarde le "loginName" ici en session pour l'utiliser dans le oAuth2Callback
                 response = "redirect:" + authorizationUrl.build();
             }
         } catch (IOException e) {
