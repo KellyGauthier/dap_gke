@@ -29,6 +29,8 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 
 import fr.houseofcode.dap.server.rma.google.Utils;
 
+//TODO GKE by Djer |Audit Code| Prends en comtpe les remarques de CheckStyle !
+
 /**
  * @author lavio
  *
@@ -59,7 +61,7 @@ public class GoogleAccount {
         final String userId = getUserid(session);
         try {
             NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
-            final GoogleAuthorizationCodeFlow flow = Utils.getFlow(httpTransport );
+            final GoogleAuthorizationCodeFlow flow = Utils.getFlow(httpTransport);
             final TokenResponse response = flow.newTokenRequest(decodedCode).setRedirectUri(redirectUri).execute();
 
             final Credential credential = flow.createAndStoreCredential(response, userId);
@@ -70,10 +72,10 @@ public class GoogleAccount {
             if (LOG.isDebugEnabled()) {
                 if (null != credential && null != credential.getAccessToken()) {
                     LOG.debug("New user credential stored with userId : " + userId + "partial AccessToken : "
-                            + credential.getAccessToken().substring(SENSIBLE_DATA_FIRST_CHAR,
-                                    SENSIBLE_DATA_LAST_CHAR));
+                            + credential.getAccessToken().substring(SENSIBLE_DATA_FIRST_CHAR, SENSIBLE_DATA_LAST_CHAR));
                 }
             }
+            //TODO GKE by Djer |API Google| Il faudrait sauvegarder le "nouveau" AppUser ici.
             // onSuccess(request, resp, credential);
         } catch (IOException e) {
             LOG.error("Exception while trying to store user Credential", e);
@@ -141,7 +143,7 @@ public class GoogleAccount {
         url.setRawPath(destination);
         return url.build();
     }
-    
+
     /**
      * Add a Google account (user will be prompt to connect and accept required
      * access).
@@ -169,7 +171,7 @@ public class GoogleAccount {
                 authorizationUrl.setRedirectUri(buildRedirectUri(request, "/oAuth2Callback"));
                 // store userId in session for CallBack Access
                 session.setAttribute("userId", userKey);
-                //TODO bam by Djer |API Google| Sauvegarde le "loginName" ici en session pour l'utiliser dans le oAuth2Callback
+                //TODO GKE by Djer |API Google| Sauvegarde le "loginName" ici en session pour l'utiliser dans le oAuth2Callback
                 response = "redirect:" + authorizationUrl.build();
             }
         } catch (IOException e) {
@@ -177,5 +179,5 @@ public class GoogleAccount {
         }
         return response;
 
-}
+    }
 }

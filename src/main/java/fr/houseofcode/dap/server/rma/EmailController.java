@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.houseofcode.dap.server.rma.google.GmailService;
 
+//TODO GKE by Djer |Audit Code| Prends en comtpe les remarques de CheckStyle !
+
 /**
  * @author lavio
  *
@@ -29,9 +31,10 @@ public class EmailController {
     }
 
     /**
-     * Define the gmailService
+     * Define the gmailService.
      * @param gmailService
      */
+    //TODO GKE by Djer |POO| Attention à l'ordre recommandé, les attributs devraient être vers le début de la classe. Ordre recommandé : Constantes, Attributs, initialisateurs statics, constructeurs, méthdoes métiers, méthodes utilitaires (toString,...) getters/setters.
     public void setService(GmailService gmailService) {
         this.service = gmailService;
     }
