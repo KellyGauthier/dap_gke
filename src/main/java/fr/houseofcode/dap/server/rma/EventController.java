@@ -24,7 +24,7 @@ public class EventController {
     @Autowired
     private CalendarService event;
 
-    //TODO GKE by Djer |Rest API| Chemin de la route pas top, "event/next" serait mieux.
+    //TODO GKE by Djer |Rest API| Chemin de la route pas top, "/event/next" serait mieux.
     @RequestMapping("/nextevent")
     public String displayNextEvent(@RequestParam final String userKey) throws IOException, GeneralSecurityException {
         return event.getNextEvent(userKey);

@@ -68,7 +68,8 @@ public final class GmailServiceImpl implements GmailService {
 
     @Override
     public String getLabels(String ukValue) throws IOException, GeneralSecurityException {
-        //TODO GKE by Djer |IDE| (encdage) Attention l'encodage de tes ficheirs Java etait (est?) en ISO8859-2 au lieu d'UTF-8 (dans Eclipse Help->Perform setup Task...)
+        //TODO GKE by Djer |IDE| (encdage) Attention l'encodage de tes fichiers Java etait (est?) en ISO8859-2 au lieu d'UTF-8 (dans Eclipse Help->Perform setup Task...)
+        //TODO GKE by Djer |Log4J| Contextualise tes messages de log " ... for userKey : " + ukValue".
         LOG.debug(
                 "recuperation des labels avec déclenchement possible d'exceptions (IOException ou GeneralSecurityException)");
 

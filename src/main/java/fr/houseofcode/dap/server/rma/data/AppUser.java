@@ -19,7 +19,6 @@ public class AppUser {
     @GeneratedValue
     private Integer id;
 
-    //TODO GKE by Djer |POO| Attention à l'ordre recommandé, les getters/setters sont vers la fin de la classe. Ordre recommandé : Constantes, Attributs, initialisateurs statics, constructeurs, méthdoes métiers, méthodes utilitaires (toString,...) getters/setters.
     /**
      * @return the id
      */
@@ -48,6 +47,7 @@ public class AppUser {
         this.name = name;
     }
 
+    //TODO GKE by Djer |POO| Attention à l'ordre recommandé, les getters/setters sont vers la fin de la classe. Ordre recommandé : Constantes, Attributs, initialisateurs statics, constructeurs, méthdoes métiers, méthodes utilitaires (toString,...) getters/setters.
     private String name;
 
 }

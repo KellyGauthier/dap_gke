@@ -66,6 +66,7 @@ public final class CalendarService {
      * @throws GeneralSecurityException exception
      */
     public String getNextEvent(String ukValue) throws IOException, GeneralSecurityException {
+        //TODO GKE by Djer |POO| Ce commentaire est devenu faux !
         // Build a new authorized API client service.
 
         //TODO GKE by Djer |IDE| (encdage) Attention l'encodage de tes ficheirs Java etait (est?) en ISO8859-2 au lieu d'UTF-8 (dans Eclipse Help->Perform setup Task...)
@@ -97,6 +98,7 @@ public final class CalendarService {
 
         }
 
+        //TODO GKE by Djer |Log4J| Contextualise tes messages de log " ... for userKey : " + ukValue".
         LOG.info("Prochain évènement : " + str);
         return str;
     }

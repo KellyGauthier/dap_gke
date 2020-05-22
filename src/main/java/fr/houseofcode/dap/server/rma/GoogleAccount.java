@@ -75,7 +75,7 @@ public class GoogleAccount {
                             + credential.getAccessToken().substring(SENSIBLE_DATA_FIRST_CHAR, SENSIBLE_DATA_LAST_CHAR));
                 }
             }
-            //TODO GKE by Djer |API Google| Il faudrait sauvegarder le nouveau AppUser ici.
+            //TODO GKE by Djer |API Google| Il faudrait sauvegarder le "nouveau" AppUser ici.
             // onSuccess(request, resp, credential);
         } catch (IOException e) {
             LOG.error("Exception while trying to store user Credential", e);
